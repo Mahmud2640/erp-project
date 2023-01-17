@@ -1,30 +1,11 @@
-import { Box } from "@mui/material";
-import { createContext, useState } from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
-import "./App.css";
-import Router from "./Components/Router/Router";
-export const DarkmodeEnable = createContext();
+import React from 'react';
 
-function App() {
-  const [isDark, setDark] = useState(false);
-  const handleDarkMode = () => {
-    setDark(true);
-  };
-  const handleLightMode = () => {
-    setDark(false);
-  };
-  const queryClient = new QueryClient();
+const App = () => {
   return (
-    <QueryClientProvider client={queryClient}>
-      <DarkmodeEnable.Provider
-        value={{ isDark, handleDarkMode, handleLightMode }}
-      >
-        <Box>
-          <Router />
-        </Box>
-      </DarkmodeEnable.Provider>
-    </QueryClientProvider>
+    <div>
+      <h1>hello</h1>
+    </div>
   );
-}
+};
 
 export default App;
