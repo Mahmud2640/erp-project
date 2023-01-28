@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import { Box } from "@mui/material";
+import React, { useState, useEffect, createContext } from "react";
+import { QueryClientProvider, QueryClient } from "react-query";
+import "./App.css";
+import Router from "./Components/Router/Router";
+export const DarkmodeEnable = createContext();
+const App = () => {
+  const [isDark, setDark] = useState(false);
+  const handleDarkMode = () => {
+    setDark(true);
+  };
+  const handleLightMode = () => {
+    setDark(false);
+  };
+  const queryClient = new QueryClient();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <DarkmodeEnable.Provider
+        value={{ isDark, handleDarkMode, handleLightMode }}
+      >
+        <Box>
+          <Router />
+        </Box>
+      </DarkmodeEnable.Provider>
+    </QueryClientProvider>
   );
-}
-
+};
 export default App;
